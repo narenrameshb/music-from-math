@@ -229,7 +229,7 @@ def main():
 
 if __name__ == "__main__":
     try:
-        main()
+    main()
     except KeyboardInterrupt:
         print("\n\nApplication interrupted by user.")
     except Exception as e:
