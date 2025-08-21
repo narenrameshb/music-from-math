@@ -1,14 +1,14 @@
-# Mathematical Melody Generator 🎼
+# Music From Math 🎼
 
 Convert mathematical sequences into musical melodies using Python and Windows sound.
 
 ## What It Does
 
-This project transforms mathematical sequences (Fibonacci, prime numbers, pi digits) into audible music. It maps numbers to musical notes, scales, and rhythms to create unique compositions.
+This project transforms mathematical sequences (Fibonacci, prime numbers, pi digits) into audible music.
 
 ## Quick Start
 
-**Hear a complete mathematical symphony (recommended):**
+**Hear a complete mathematical symphony:**
 ```bash
 python auto_symphony.py
 ```
@@ -23,12 +23,12 @@ python demo.py
 python main.py
 ```
 
-## What You'll Hear
+## What You Will Hear
 
 - **Fibonacci sequences** in major scales with waltz rhythms
 - **Prime numbers** in minor scales with march patterns  
 - **Pi digits** in pentatonic scales with simple rhythms
-- **Complete symphony** with 5 movements (~32 seconds total)
+- **Complete symphony** with 5 movements (about 32 seconds total)
 
 ## Features
 
@@ -66,13 +66,6 @@ python main.py
 └── test_*.py            # Test files
 ```
 
-## Perfect For
-
-- **Resume projects** - Shows math + programming skills
-- **Educational demos** - Math concepts made audible
-- **Learning Python** - Practical audio programming
-- **Creative coding** - Algorithmic music generation
-
 ## Example Output
 
 The automatic symphony creates 5 movements:
@@ -81,15 +74,6 @@ The automatic symphony creates 5 movements:
 3. **Pi Bridge** - Transitional section (20 notes, 150 BPM)
 4. **Fibonacci Variation** - Energetic development (8 notes, 180 BPM)
 5. **Prime Finale** - Dramatic conclusion (10 notes, 60 BPM)
-
-## Skills Demonstrated
-
-- Python programming with object-oriented design
-- Mathematical algorithm implementation
-- Audio generation and processing
-- File I/O and data persistence
-- Testing and error handling
-- Cross-domain problem solving (math + music + CS)
 
 ## Future Ideas
 
@@ -100,5 +84,3 @@ The automatic symphony creates 5 movements:
 - Visual representations
 
 ---
-
-**Run `python auto_symphony.py` and enjoy mathematical music!** 🎵✨
