@@ -1,14 +1,12 @@
-"""
-Test script for the Mathematical Melody Generator.
-Tests all major components to ensure they work correctly.
-"""
+# Test script for the Mathematical Melody Generator
+# Tests all major components to ensure they work correctly
 
 import os
 import sys
 import time
 
 def test_math_sequences():
-    """Test mathematical sequence generation."""
+    # Test mathematical sequence generation
     print("Testing mathematical sequences...")
     
     try:
@@ -18,34 +16,34 @@ def test_math_sequences():
         fib = generate_fibonacci(8)
         expected_fib = [0, 1, 1, 2, 3, 5, 8, 13]
         assert fib == expected_fib, f"Fibonacci test failed: {fib} != {expected_fib}"
-        print("✓ Fibonacci sequence generation works")
+        print("Fibonacci sequence generation works")
         
         # Test Primes
         primes = generate_primes(5)
         expected_primes = [2, 3, 5, 7, 11]
         assert primes == expected_primes, f"Primes test failed: {primes} != {expected_primes}"
-        print("✓ Prime numbers generation works")
+        print("Prime numbers generation works")
         
         # Test Pi digits
         pi_digits = generate_pi_digits(5)
         expected_pi = [3, 1, 4, 1, 5]
         assert pi_digits == expected_pi, f"Pi digits test failed: {pi_digits} != {expected_pi}"
-        print("✓ Pi digits generation works")
+        print("Pi digits generation works")
         
         # Test sequence to notes conversion
         notes = sequence_to_notes([1, 2, 3], 'major')
         assert len(notes) == 3, f"Notes conversion failed: expected 3 notes, got {len(notes)}"
         assert all(isinstance(note, (int, float)) for note in notes), "Notes should be numbers"
-        print("✓ Sequence to notes conversion works")
+        print("Sequence to notes conversion works")
         
         return True
         
     except Exception as e:
-        print(f"✗ Math sequences test failed: {e}")
+        print(f"Math sequences test failed: {e}")
         return False
 
 def test_audio_engine():
-    """Test audio engine functionality."""
+    # Test audio engine functionality
     print("\nTesting audio engine...")
     
     try:
@@ -58,17 +56,17 @@ def test_audio_engine():
         engine.play_note(440, 100)  # A4 note, 100ms
         time.sleep(0.2)  # Wait for note to finish
         
-        print("✓ Audio engine initialization works")
-        print("✓ Single note playback works")
+        print("Audio engine initialization works")
+        print("Single note playback works")
         
         return True
         
     except Exception as e:
-        print(f"✗ Audio engine test failed: {e}")
+        print(f"Audio engine test failed: {e}")
         return False
 
 def test_composition_management():
-    """Test composition management."""
+    # Test composition management
     print("\nTesting composition management...")
     
     try:
@@ -78,17 +76,17 @@ def test_composition_management():
         comp = Composition("Test", "fibonacci", [440, 494, 523], 120, "major", "simple")
         assert comp.name == "Test", "Composition name not set correctly"
         assert comp.sequence_type == "fibonacci", "Sequence type not set correctly"
-        print("✓ Composition creation works")
+        print("Composition creation works")
         
         # Test composition manager
         manager = CompositionManager("test_compositions")
         assert os.path.exists("test_compositions"), "Save directory not created"
-        print("✓ Composition manager initialization works")
+        print("Composition manager initialization works")
         
         # Test saving and loading
         success = manager.save_composition(comp)
         assert success, "Composition save failed"
-        print("✓ Composition saving works")
+        print("Composition saving works")
         
         # Clean up test directory
         import shutil
@@ -102,7 +100,7 @@ def test_composition_management():
         return False
 
 def test_melody_generator():
-    """Test the main melody generator."""
+    # Test the main melody generator
     print("\nTesting melody generator...")
     
     try:
@@ -115,21 +113,21 @@ def test_melody_generator():
         assert comp is not None, "Fibonacci melody generation failed"
         assert comp.name == "Fibonacci_5_Notes", "Composition name incorrect"
         assert len(comp.notes) == 5, "Wrong number of notes generated"
-        print("✓ Fibonacci melody generation works")
+        print("Fibonacci melody generation works")
         
         # Test composition info
         generator.current_composition = comp
         generator.get_composition_info()
-        print("✓ Composition info display works")
+        print("Composition info display works")
         
         return True
         
     except Exception as e:
-        print(f"✗ Melody generator test failed: {e}")
+        print(f"Melody generator test failed: {e}")
         return False
 
 def run_all_tests():
-    """Run all tests and report results."""
+    # Run all tests and report results
     print("=" * 60)
     print("           RUNNING TESTS")
     print("=" * 60)
@@ -156,11 +154,11 @@ def run_all_tests():
     print("=" * 60)
     
     if passed == total:
-        print("🎉 All tests passed! The melody generator is working correctly.")
+        print("All tests passed! The melody generator is working correctly.")
         print("\nYou can now run the main application with:")
         print("  python main.py")
     else:
-        print("❌ Some tests failed. Please check the errors above.")
+        print("Some tests failed. Please check the errors above.")
     
     return passed == total
 
