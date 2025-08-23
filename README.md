@@ -1,4 +1,4 @@
-# Music From Math 🎼
+# Music From Math
 
 Convert mathematical sequences into musical melodies using Python and Windows sound.
 

@@ -1,6 +1,4 @@
-"""
-Composition management for saving and loading musical compositions.
-"""
+# Composition management for saving and loading musical compositions
 
 import json
 import os
@@ -9,17 +7,13 @@ from datetime import datetime
 class Composition:
     def __init__(self, name="Untitled", sequence_type="fibonacci", notes=None, 
                  tempo=120, scale_type="major", rhythm_pattern="simple"):
-        """
-        Initialize a composition.
-        
-        Args:
-            name (str): Name of the composition
-            sequence_type (str): Type of mathematical sequence
-            notes (list): List of note frequencies
-            tempo (int): Tempo in BPM
-            scale_type (str): Musical scale type
-            rhythm_pattern (str): Rhythm pattern type
-        """
+        # Initialize a composition
+        # name: name of the composition
+        # sequence_type: type of mathematical sequence
+        # notes: list of note frequencies
+        # tempo: tempo in BPM
+        # scale_type: musical scale type
+        # rhythm_pattern: rhythm pattern type
         self.name = name
         self.sequence_type = sequence_type
         self.notes = notes or []
@@ -30,7 +24,7 @@ class Composition:
         self.modified_date = datetime.now().isoformat()
     
     def to_dict(self):
-        """Convert composition to dictionary for saving."""
+        # Convert composition to dictionary for saving
         return {
             'name': self.name,
             'sequence_type': self.sequence_type,
@@ -44,7 +38,7 @@ class Composition:
     
     @classmethod
     def from_dict(cls, data):
-        """Create composition from dictionary."""
+        # Create composition from dictionary
         comp = cls(
             name=data.get('name', 'Untitled'),
             sequence_type=data.get('sequence_type', 'fibonacci'),
@@ -58,7 +52,7 @@ class Composition:
         return comp
     
     def update(self, **kwargs):
-        """Update composition properties."""
+        # Update composition properties
         for key, value in kwargs.items():
             if hasattr(self, key):
                 setattr(self, key, value)
@@ -66,43 +60,33 @@ class Composition:
 
 class CompositionManager:
     def __init__(self, save_directory="compositions"):
-        """
-        Initialize the composition manager.
-        
-        Args:
-            save_directory (str): Directory to save compositions
-        """
+        # Initialize the composition manager
+        # save_directory: directory to save compositions
         self.save_directory = save_directory
         self.compositions = {}
         self.ensure_save_directory()
     
     def ensure_save_directory(self):
-        """Ensure the save directory exists."""
+        # Ensure the save directory exists
         if not os.path.exists(self.save_directory):
             os.makedirs(self.save_directory)
     
-    def save_composition(self, composition):
-        """
-        Save a composition to file.
-        
-        Args:
-            composition (Composition): Composition to save
-            
-        Returns:
-            bool: True if successful, False otherwise
-        """
+    def save_composition(self, comp):
+        # Save a composition to file
+        # comp: composition to save
+        # returns: True if successful, False otherwise
         try:
-            filename = f"{composition.name.replace(' ', '_')}.json"
+            filename = f"{comp.name.replace(' ', '_')}.json"
             filepath = os.path.join(self.save_directory, filename)
             
             # Update modified date
-            composition.modified_date = datetime.now().isoformat()
+            comp.modified_date = datetime.now().isoformat()
             
             with open(filepath, 'w') as f:
-                json.dump(composition.to_dict(), f, indent=2)
+                json.dump(comp.to_dict(), f, indent=2)
             
-            self.compositions[composition.name] = composition
-            print(f"Composition '{composition.name}' saved successfully.")
+            self.compositions[comp.name] = comp
+            print(f"Composition '{comp.name}' saved successfully.")
             return True
             
         except Exception as e:
@@ -110,15 +94,9 @@ class CompositionManager:
             return False
     
     def load_composition(self, filename):
-        """
-        Load a composition from file.
-        
-        Args:
-            filename (str): Name of the file to load
-            
-        Returns:
-            Composition: Loaded composition or None if failed
-        """
+        # Load a composition from file
+        # filename: name of the file to load
+        # returns: loaded composition or None if failed
         try:
             filepath = os.path.join(self.save_directory, filename)
             
@@ -139,37 +117,31 @@ class CompositionManager:
             return None
     
     def list_compositions(self):
-        """List all available compositions."""
+        # List all available compositions
         compositions = []
         
         if not os.path.exists(self.save_directory):
             return compositions
         
-        for filename in os.listdir(self.save_directory):
-            if filename.endswith('.json'):
+        for fname in os.listdir(self.save_directory):
+            if fname.endswith('.json'):
                 try:
-                    filepath = os.path.join(self.save_directory, filename)
+                    filepath = os.path.join(self.save_directory, fname)
                     with open(filepath, 'r') as f:
                         data = json.load(f)
                     compositions.append(data)
                 except Exception as e:
-                    print(f"Error reading {filename}: {e}")
+                    print(f"Error reading {fname}: {e}")
         
         return compositions
     
     def delete_composition(self, name):
-        """
-        Delete a composition.
-        
-        Args:
-            name (str): Name of the composition to delete
-            
-        Returns:
-            bool: True if successful, False otherwise
-        """
+        # Delete a composition
+        # name: name of the composition to delete
+        # returns: True if successful, False otherwise
         try:
-            filename = f"{name.replace(' ', '_')}.json"
-            filepath = os.path.join(self.save_directory, filename)
+            fname = f"{name.replace(' ', '_')}.json"
+            filepath = os.path.join(self.save_directory, fname)
             
             if os.path.exists(filepath):
                 os.remove(filepath)
@@ -188,20 +160,14 @@ class CompositionManager:
     def create_composition_from_sequence(self, name, sequence_type, notes, 
                                        tempo=120, scale_type="major", 
                                        rhythm_pattern="simple"):
-        """
-        Create and save a new composition from a mathematical sequence.
-        
-        Args:
-            name (str): Name of the composition
-            sequence_type (str): Type of mathematical sequence
-            notes (list): List of note frequencies
-            tempo (int): Tempo in BPM
-            scale_type (str): Musical scale type
-            rhythm_pattern (str): Rhythm pattern type
-            
-        Returns:
-            Composition: Created composition
-        """
+        # Create and save a new composition from a mathematical sequence
+        # name: name of the composition
+        # sequence_type: type of mathematical sequence
+        # notes: list of note frequencies
+        # tempo: tempo in BPM
+        # scale_type: musical scale type
+        # rhythm_pattern: rhythm pattern type
+        # returns: created composition
         composition = Composition(
             name=name,
             sequence_type=sequence_type,

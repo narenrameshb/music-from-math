@@ -1,6 +1,4 @@
-"""
-Main melody generator that combines mathematical sequences with audio generation.
-"""
+# Main melody generator that combines mathematical sequences with audio generation
 
 from math_sequences import (
     generate_fibonacci, generate_primes, generate_pi_digits, sequence_to_notes
@@ -10,130 +8,108 @@ from composition import CompositionManager
 
 class MelodyGenerator:
     def __init__(self):
-        """Initialize the melody generator."""
+        # Initialize the melody generator
         self.audio_engine = AudioEngine()
         self.composition_manager = CompositionManager()
         self.current_composition = None
         
     def generate_fibonacci_melody(self, n=10, tempo=120, scale_type='major', 
                                  rhythm_pattern='simple', save=True):
-        """
-        Generate and play a Fibonacci sequence melody.
-        
-        Args:
-            n (int): Number of Fibonacci numbers to use
-            tempo (int): Tempo in BPM
-            scale_type (str): Musical scale type
-            rhythm_pattern (str): Rhythm pattern type
-            save (bool): Whether to save the composition
-            
-        Returns:
-            Composition: Generated composition
-        """
+        # Generate and play a Fibonacci sequence melody
+        # n: number of Fibonacci numbers to use
+        # tempo: tempo in BPM
+        # scale_type: musical scale type
+        # rhythm_pattern: rhythm pattern type
+        # save: whether to save the composition
+        # returns: generated composition
         print(f"Generating Fibonacci melody with {n} numbers...")
         
         # Generate Fibonacci sequence
-        fib_sequence = generate_fibonacci(n)
-        print(f"Fibonacci sequence: {fib_sequence}")
+        fib_seq = generate_fibonacci(n)
+        print(f"Fibonacci sequence: {fib_seq}")
         
         # Convert to musical notes
-        notes = sequence_to_notes(fib_sequence, scale_type)
+        notes = sequence_to_notes(fib_seq, scale_type)
         print(f"Generated {len(notes)} musical notes")
         
         # Create composition
-        composition_name = f"Fibonacci_{n}_Notes"
-        composition = self.composition_manager.create_composition_from_sequence(
-            composition_name, "fibonacci", notes, tempo, scale_type, rhythm_pattern
+        comp_name = f"Fibonacci_{n}_Notes"
+        comp = self.composition_manager.create_composition_from_sequence(
+            comp_name, "fibonacci", notes, tempo, scale_type, rhythm_pattern
         )
         
-        if composition and save:
-            self.current_composition = composition
-            print(f"Composition '{composition.name}' created and saved.")
+        if comp and save:
+            self.current_composition = comp
+            print(f"Composition '{comp.name}' created and saved.")
         
-        return composition
+        return comp
     
     def generate_prime_melody(self, n=10, tempo=120, scale_type='major', 
                              rhythm_pattern='simple', save=True):
-        """
-        Generate and play a prime numbers melody.
-        
-        Args:
-            n (int): Number of prime numbers to use
-            tempo (int): Tempo in BPM
-            scale_type (str): Musical scale type
-            rhythm_pattern (str): Rhythm pattern type
-            save (bool): Whether to save the composition
-            
-        Returns:
-            Composition: Generated composition
-        """
+        # Generate and play a prime numbers melody
+        # n: number of prime numbers to use
+        # tempo: tempo in BPM
+        # scale_type: musical scale type
+        # rhythm_pattern: rhythm pattern type
+        # save: whether to save the composition
+        # returns: generated composition
         print(f"Generating prime numbers melody with {n} numbers...")
         
         # Generate prime numbers
-        prime_sequence = generate_primes(n)
-        print(f"Prime sequence: {prime_sequence}")
+        prime_seq = generate_primes(n)
+        print(f"Prime sequence: {prime_seq}")
         
         # Convert to musical notes
-        notes = sequence_to_notes(prime_sequence, scale_type)
+        notes = sequence_to_notes(prime_seq, scale_type)
         print(f"Generated {len(notes)} musical notes")
         
         # Create composition
-        composition_name = f"Primes_{n}_Numbers"
-        composition = self.composition_manager.create_composition_from_sequence(
-            composition_name, "primes", notes, tempo, scale_type, rhythm_pattern
+        comp_name = f"Primes_{n}_Numbers"
+        comp = self.composition_manager.create_composition_from_sequence(
+            comp_name, "primes", notes, tempo, scale_type, rhythm_pattern
         )
         
-        if composition and save:
-            self.current_composition = composition
-            print(f"Composition '{composition.name}' created and saved.")
+        if comp and save:
+            self.current_composition = comp
+            print(f"Composition '{comp.name}' created and saved.")
         
-        return composition
+        return comp
     
     def generate_pi_melody(self, n=20, tempo=120, scale_type='major', 
                            rhythm_pattern='simple', save=True):
-        """
-        Generate and play a pi digits melody.
-        
-        Args:
-            n (int): Number of pi digits to use
-            tempo (int): Tempo in BPM
-            scale_type (str): Musical scale type
-            rhythm_pattern (str): Rhythm pattern type
-            save (bool): Whether to save the composition
-            
-        Returns:
-            Composition: Generated composition
-        """
+        # Generate and play a pi digits melody
+        # n: number of pi digits to use
+        # tempo: tempo in BPM
+        # scale_type: musical scale type
+        # rhythm_pattern: rhythm pattern type
+        # save: whether to save the composition
+        # returns: generated composition
         print(f"Generating pi digits melody with {n} digits...")
         
         # Generate pi digits
-        pi_sequence = generate_pi_digits(n)
-        print(f"Pi digits: {pi_sequence}")
+        pi_digits = generate_pi_digits(n)
+        print(f"Pi digits: {pi_digits}")
         
         # Convert to musical notes
-        notes = sequence_to_notes(pi_sequence, scale_type)
+        notes = sequence_to_notes(pi_digits, scale_type)
         print(f"Generated {len(notes)} musical notes")
         
         # Create composition
-        composition_name = f"Pi_{n}_Digits"
-        composition = self.composition_manager.create_composition_from_sequence(
-            composition_name, "pi", notes, tempo, scale_type, rhythm_pattern
+        comp_name = f"Pi_{n}_Digits"
+        comp = self.composition_manager.create_composition_from_sequence(
+            comp_name, "pi", notes, tempo, scale_type, rhythm_pattern
         )
         
-        if composition and save:
-            self.current_composition = composition
-            print(f"Composition '{composition.name}' created and saved.")
+        if comp and save:
+            self.current_composition = comp
+            print(f"Composition '{comp.name}' created and saved.")
         
-        return composition
+        return comp
     
     def play_composition(self, composition=None, use_rhythm=True):
-        """
-        Play a composition.
-        
-        Args:
-            composition (Composition): Composition to play (uses current if None)
-            use_rhythm (bool): Whether to use rhythm patterns
-        """
+        # Play a composition
+        # composition: composition to play (uses current if None)
+        # use_rhythm: whether to use rhythm patterns
         if composition is None:
             composition = self.current_composition
         
@@ -165,11 +141,11 @@ class MelodyGenerator:
             )
     
     def stop_playing(self):
-        """Stop the currently playing melody."""
+        # Stop the currently playing melody
         self.audio_engine.stop_melody()
     
     def list_saved_compositions(self):
-        """List all saved compositions."""
+        # List all saved compositions
         compositions = self.composition_manager.list_compositions()
         
         if not compositions:
@@ -188,39 +164,23 @@ class MelodyGenerator:
             print()
     
     def load_composition(self, filename):
-        """
-        Load a composition from file.
-        
-        Args:
-            filename (str): Name of the file to load
-            
-        Returns:
-            Composition: Loaded composition or None if failed
-        """
+        # Load a composition from file
+        # filename: name of the file to load
+        # returns: loaded composition or None if failed
         composition = self.composition_manager.load_composition(filename)
         if composition:
             self.current_composition = composition
         return composition
     
     def delete_composition(self, name):
-        """
-        Delete a composition.
-        
-        Args:
-            name (str): Name of the composition to delete
-            
-        Returns:
-            bool: True if successful, False otherwise
-        """
+        # Delete a composition
+        # name: name of the composition to delete
+        # returns: True if successful, False otherwise
         return self.composition_manager.delete_composition(name)
     
     def get_composition_info(self, composition=None):
-        """
-        Get information about a composition.
-        
-        Args:
-            composition (Composition): Composition to get info for (uses current if None)
-        """
+        # Get information about a composition
+        # composition: composition to get info for (uses current if None)
         if composition is None:
             composition = self.current_composition
         

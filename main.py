@@ -1,17 +1,15 @@
-"""
-Main entry point for the Mathematical Melody Generator.
-Provides a command-line interface for user interaction.
-"""
+# Main entry point for the Mathematical Melody Generator
+# Provides a command-line interface for user interaction
 
 from melody_generator import MelodyGenerator
 import os
 
 def clear_screen():
-    """Clear the console screen."""
+    # Clear the console screen
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def print_banner():
-    """Print the application banner."""
+    # Print the application banner
     print("=" * 60)
     print("           MATHEMATICAL MELODY GENERATOR")
     print("=" * 60)
@@ -19,7 +17,7 @@ def print_banner():
     print("=" * 60)
 
 def print_main_menu():
-    """Print the main menu options."""
+    # Print the main menu options
     print("\nMain Menu:")
     print("1. Generate Fibonacci Melody")
     print("2. Generate Prime Numbers Melody")
@@ -34,17 +32,11 @@ def print_main_menu():
     print("-" * 40)
 
 def get_user_input(prompt, input_type=str, default=None):
-    """
-    Get user input with error handling.
-    
-    Args:
-        prompt (str): Input prompt
-        input_type: Type to convert input to
-        default: Default value if input is empty
-        
-    Returns:
-        User input converted to specified type
-    """
+    # Get user input with error handling
+    # prompt: input prompt
+    # input_type: type to convert input to  
+    # default: default value if input is empty
+    # returns: user input converted to specified type
     while True:
         try:
             user_input = input(prompt).strip()
@@ -58,13 +50,9 @@ def get_user_input(prompt, input_type=str, default=None):
             return None
 
 def generate_melody_menu(generator, melody_type):
-    """
-    Menu for generating melodies with parameters.
-    
-    Args:
-        generator (MelodyGenerator): The melody generator instance
-        melody_type (str): Type of melody to generate
-    """
+    # Menu for generating melodies with parameters
+    # generator: the melody generator instance
+    # melody_type: type of melody to generate
     print(f"\nGenerate {melody_type} Melody")
     print("-" * 30)
     
@@ -128,7 +116,7 @@ def generate_melody_menu(generator, melody_type):
         print("Failed to generate melody.")
 
 def load_composition_menu(generator):
-    """Menu for loading compositions."""
+    # Menu for loading compositions
     print("\nLoad Composition")
     print("-" * 20)
     
@@ -138,8 +126,8 @@ def load_composition_menu(generator):
         return
     
     print("\nAvailable compositions:")
-    for i, comp in enumerate(compositions, 1):
-        print(f"{i}. {comp['name']} ({comp['sequence_type']})")
+    for idx, comp in enumerate(compositions, 1):
+        print(f"{idx}. {comp['name']} ({comp['sequence_type']})")
     
     choice = get_user_input("\nEnter composition number to load: ", int)
     if choice is None or choice < 1 or choice > len(compositions):
@@ -147,15 +135,15 @@ def load_composition_menu(generator):
         return
     
     selected_comp = compositions[choice - 1]
-    filename = f"{selected_comp['name'].replace(' ', '_')}.json"
+    fname = f"{selected_comp['name'].replace(' ', '_')}.json"
     
-    if generator.load_composition(filename):
+    if generator.load_composition(fname):
         print(f"Composition '{selected_comp['name']}' loaded successfully.")
     else:
         print("Failed to load composition.")
 
 def delete_composition_menu(generator):
-    """Menu for deleting compositions."""
+    # Menu for deleting compositions
     print("\nDelete Composition")
     print("-" * 20)
     
@@ -165,8 +153,8 @@ def delete_composition_menu(generator):
         return
     
     print("\nAvailable compositions:")
-    for i, comp in enumerate(compositions, 1):
-        print(f"{i}. {comp['name']} ({comp['sequence_type']})")
+    for idx, comp in enumerate(compositions, 1):
+        print(f"{idx}. {comp['name']} ({comp['sequence_type']})")
     
     choice = get_user_input("\nEnter composition number to delete: ", int)
     if choice is None or choice < 1 or choice > len(compositions):
@@ -185,7 +173,7 @@ def delete_composition_menu(generator):
         print("Deletion cancelled.")
 
 def main():
-    """Main application loop."""
+    # Main application loop
     generator = MelodyGenerator()
     
     while True:
@@ -229,7 +217,7 @@ def main():
 
 if __name__ == "__main__":
     try:
-    main()
+        main()
     except KeyboardInterrupt:
         print("\n\nApplication interrupted by user.")
     except Exception as e:

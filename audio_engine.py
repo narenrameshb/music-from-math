@@ -1,6 +1,4 @@
-"""
-Audio engine using winsound for generating musical notes from mathematical sequences.
-"""
+# Audio engine using winsound for generating musical notes from mathematical sequences
 
 import winsound
 import time
@@ -8,18 +6,14 @@ import threading
 
 class AudioEngine:
     def __init__(self):
-        """Initialize the audio engine."""
+        # Initialize the audio engine
         self.is_playing = False
         self.current_thread = None
         
     def play_note(self, frequency, duration_ms=500):
-        """
-        Play a single note using winsound.
-        
-        Args:
-            frequency (float): Frequency in Hz
-            duration_ms (int): Duration in milliseconds
-        """
+        # Play a single note using winsound
+        # frequency: frequency in Hz
+        # duration_ms: duration in milliseconds
         try:
             # Convert frequency to integer (winsound requires int)
             freq_int = int(frequency)
@@ -31,15 +25,11 @@ class AudioEngine:
             print(f"Error playing note: {e}")
     
     def play_melody(self, notes, tempo=120, note_duration=500, volume=1.0):
-        """
-        Play a sequence of notes as a melody.
-        
-        Args:
-            notes (list): List of note frequencies
-            tempo (int): Tempo in BPM (beats per minute)
-            note_duration (int): Duration of each note in milliseconds
-            volume (float): Volume multiplier (0.0 to 1.0)
-        """
+        # Play a sequence of notes as a melody
+        # notes: list of note frequencies
+        # tempo: tempo in BPM (beats per minute)
+        # note_duration: duration of each note in milliseconds
+        # volume: volume multiplier (0.0 to 1.0)
         if self.is_playing:
             print("Already playing a melody. Please wait...")
             return
@@ -52,7 +42,7 @@ class AudioEngine:
         
         def play_sequence():
             try:
-                for i, note in enumerate(notes):
+                for idx, note in enumerate(notes):
                     if not self.is_playing:
                         break
                     
@@ -60,7 +50,7 @@ class AudioEngine:
                     self.play_note(note, int(note_duration * volume))
                     
                     # Wait before next note (except for the last note)
-                    if i < len(notes) - 1:
+                    if idx < len(notes) - 1:
                         time.sleep(note_delay / 1000.0)
                 
                 self.is_playing = False
@@ -76,21 +66,17 @@ class AudioEngine:
         self.current_thread.start()
     
     def stop_melody(self):
-        """Stop the currently playing melody."""
+        # Stop the currently playing melody
         self.is_playing = False
         if self.current_thread and self.current_thread.is_alive():
             self.current_thread.join(timeout=0.1)
         print("Melody stopped.")
     
     def play_sequence_with_rhythm(self, notes, rhythm_pattern=None, tempo=120):
-        """
-        Play a sequence with a specific rhythm pattern.
-        
-        Args:
-            notes (list): List of note frequencies
-            rhythm_pattern (list): List of note durations (in milliseconds)
-            tempo (int): Tempo in BPM
-        """
+        # Play a sequence with a specific rhythm pattern
+        # notes: list of note frequencies
+        # rhythm_pattern: list of note durations (in milliseconds)
+        # tempo: tempo in BPM
         if not rhythm_pattern:
             # Default to equal note durations
             rhythm_pattern = [500] * len(notes)
@@ -133,24 +119,18 @@ class AudioEngine:
         self.current_thread.start()
     
     def create_rhythm_pattern(self, pattern_type='simple', num_notes=8):
-        """
-        Create a rhythm pattern for the melody.
-        
-        Args:
-            pattern_type (str): Type of rhythm pattern
-            num_notes (int): Number of notes in the pattern
-            
-        Returns:
-            list: List of note durations in milliseconds
-        """
+        # Create a rhythm pattern for the melody
+        # pattern_type: type of rhythm pattern
+        # num_notes: number of notes in the pattern
+        # returns: list of note durations in milliseconds
         if pattern_type == 'simple':
             # Simple pattern: all notes equal duration
             return [500] * num_notes
         elif pattern_type == 'waltz':
             # Waltz pattern: 3/4 time
             pattern = []
-            for i in range(num_notes):
-                if i % 3 == 0:
+            for idx in range(num_notes):
+                if idx % 3 == 0:
                     pattern.append(800)  # Strong beat
                 else:
                     pattern.append(400)  # Weak beat
@@ -158,10 +138,10 @@ class AudioEngine:
         elif pattern_type == 'march':
             # March pattern: 4/4 time
             pattern = []
-            for i in range(num_notes):
-                if i % 4 == 0:
+            for idx in range(num_notes):
+                if idx % 4 == 0:
                     pattern.append(600)  # Strong beat
-                elif i % 2 == 0:
+                elif idx % 2 == 0:
                     pattern.append(400)  # Medium beat
                 else:
                     pattern.append(200)  # Weak beat

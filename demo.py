@@ -1,13 +1,11 @@
-"""
-Demo script for the Mathematical Melody Generator.
-Shows examples of different mathematical sequences converted to music.
-"""
+# Demo script for the Mathematical Melody Generator
+# Shows examples of different mathematical sequences converted to music
 
 import time
 from melody_generator import MelodyGenerator
 
 def run_demo():
-    """Run the demo showcasing different mathematical melodies."""
+    # Run the demo showcasing different mathematical melodies
     print("=" * 60)
     print("           MATHEMATICAL MELODY GENERATOR DEMO")
     print("=" * 60)
@@ -18,7 +16,7 @@ def run_demo():
     generator = MelodyGenerator()
     
     # Demo 1: Fibonacci Sequence
-    print("\n🎵 DEMO 1: Fibonacci Sequence Melody")
+    print("\nDEMO 1: Fibonacci Sequence Melody")
     print("-" * 40)
     print("The Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8, 13...")
     print("Each number maps to a musical note in the C major scale.")
@@ -38,7 +36,7 @@ def run_demo():
         generator.get_composition_info(comp1)
     
     # Demo 2: Prime Numbers
-    print("\n🎵 DEMO 2: Prime Numbers Melody")
+    print("\nDEMO 2: Prime Numbers Melody")
     print("-" * 40)
     print("Prime numbers: 2, 3, 5, 7, 11, 13, 17, 19...")
     print("Converted to a minor scale for a different mood.")
@@ -57,8 +55,8 @@ def run_demo():
         # Show composition info
         generator.get_composition_info(comp2)
     
-    # Demo 3: Pi Digits
-    print("\n🎵 DEMO 3: Pi Digits Melody")
+    # Demo 3: Pi Digits Melody
+    print("\nDEMO 3: Pi Digits Melody")
     print("-" * 40)
     print("Pi digits: 3, 1, 4, 1, 5, 9, 2, 6...")
     print("Using pentatonic scale for a folk-like sound.")
@@ -78,7 +76,7 @@ def run_demo():
         generator.get_composition_info(comp3)
     
     # Demo 4: Show saved compositions
-    print("\n🎵 DEMO 4: Saved Compositions")
+    print("\nDEMO 4: Saved Compositions")
     print("-" * 40)
     print("All generated compositions are automatically saved.")
     
@@ -88,7 +86,7 @@ def run_demo():
     
     # Final message
     print("\n" + "=" * 60)
-    print("🎉 DEMO COMPLETED!")
+    print("DEMO COMPLETED!")
     print("=" * 60)
     print("You've experienced:")
     print("• Fibonacci sequences in major scale")
